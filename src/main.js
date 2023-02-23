@@ -24,7 +24,7 @@ Vue.use(VueCookies);
 Vue.config.productionTip = false;
 
 if (document.location.port == 8080) {
-  Vue.prototype.BaseURL = document.location.origin.replace("8080", "8888");
+  Vue.prototype.BaseURL = "http://dev-test.w5soar.com";
 } else {
   Vue.prototype.BaseURL = document.location.origin;
 }
