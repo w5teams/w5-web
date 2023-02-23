@@ -59,7 +59,7 @@ jobs:
         forceUpload: true
         dryRun: false
 
-    - name: Deploy 🚀
+    - name: Unzip 🚀
       uses: huaweicloud/ssh-remote-action@v1.0.0
       with:
         ipaddr: ${{ env.SERVER_HOST }}
@@ -67,8 +67,15 @@ jobs:
         password: ${{ env.SERVER_PASSWORD }} 
         commands: |
           cd /w5/w5-server/core/web && unzip -o ${{ env.PROJECT_NAME }}.zip
-          sleep 5
-          cd ../../ && docker compose build && docker compose up -d
+
+    - name: Deploy 🚀
+      uses: huaweicloud/ssh-remote-action@v1.0.0
+      with:
+        ipaddr: ${{ env.SERVER_HOST }}
+        username: ${{ env.USER_NAME }} 
+        password: ${{ env.SERVER_PASSWORD }} 
+        commands: |
+          cd /w5/w5-server && docker compose build && docker compose up -d
     
     - name: Notice 🚀
       uses: wangsijie/feishu-bot@v1
