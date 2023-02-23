@@ -66,11 +66,7 @@ jobs:
         username: ${{ env.USER_NAME }} 
         password: ${{ env.SERVER_PASSWORD }} 
         commands: |
-          cd /w5/w5-server/core/web
-          unzip -o ${{ env.PROJECT_NAME }}.zip
-          cd /w5/w5-server
-          docker compose build
-          docker compose up -d
+          cd /w5/w5-server/core/web && unzip -o ${{ env.PROJECT_NAME }}.zip && cd /w5/w5-server && docker compose build && docker compose up -d
     
     - name: Notice 🚀
       uses: wangsijie/feishu-bot@v1
