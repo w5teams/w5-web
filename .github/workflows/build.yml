@@ -1,0 +1,83 @@
+name: build
+
+on:
+  push:
+    branches: [ "main" ] 
+
+env:
+    PROJECT_NAME: w5-web
+    SERVER_PASSWORD: ${{ secrets.PASSWORD }} 
+    SERVER_HOST: ${{ secrets.SERVER_HOST }}
+    USER_NAME: ${{ secrets.USER_NAME }}
+    FEISHU_UUID: ${{ secrets.FEISHU_UUID }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Download Project 👏
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 16 👊
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'yarn'
+
+    - name: Cache nodemodules 😃
+      uses: actions/cache@v1
+      env:
+          cache-name: cache-node-modules
+      with:
+          path: ./node_modules 
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./package.json') }} 
+          restore-keys: |
+              ${{ runner.os }}-build-${{ env.cache-name }}-
+              ${{ runner.os }}-build-
+              ${{ runner.os }}-
+
+    - name: Install 🤙
+      run: yarn
+
+    - name: Build 🤜
+      run: yarn build
+
+    - name: Zip 🌝
+      run: |
+        cd dist
+        zip -r $PROJECT_NAME.zip *
+
+    - name: Upload 🔫
+      uses: wangyucode/sftp-upload-action@v1.4.8
+      with:
+        host: ${{ env.SERVER_HOST }}
+        username: ${{ env.USER_NAME }}
+        password: ${{ env.SERVER_PASSWORD }} 
+        localDir: ${{ env.PROJECT_NAME }}.zip
+        remoteDir: /w5/w5-server/core/web
+        forceUpload: true
+        dryRun: false
+
+    - name: Deploy 🚀
+      uses: huaweicloud/ssh-remote-action@v1.0.0
+      with:
+        ipaddr: ${{ env.SERVER_HOST }}
+        username: ${{ env.USER_NAME }} 
+        password: ${{ env.SERVER_PASSWORD }} 
+        commands: |
+          cd /w5/w5-server/core/web && unzip -o ${{ env.PROJECT_NAME }}.zip
+    
+    - name: Notice 🚀
+      uses: wangsijie/feishu-bot@v1
+      if: ${{ failure() }}
+      with:
+        uuid: ${{ env.FEISHU_UUID }}
+        text: "❌【通知】${{ env.PROJECT_NAME }} 项目部署失败，请打开 https://github.com/w5teams/w5-server/actions 查看原因"
+
+    - name: Notice 🚀
+      uses: wangsijie/feishu-bot@v1
+      if: ${{ !failure() }}
+      with:
+        uuid: ${{ env.FEISHU_UUID }}
+        text: "✅【通知】${{ env.PROJECT_NAME }} 项目部署成功，预览地址：http://dev-test.w5soar.com/"
