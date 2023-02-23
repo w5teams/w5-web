@@ -47,6 +47,7 @@ jobs:
       run: |
         cd dist
         zip -r $PROJECT_NAME.zip *
+        tree
 
     - name: Upload 🔫
       uses: wangyucode/sftp-upload-action@v1.4.8
@@ -54,7 +55,7 @@ jobs:
         host: ${{ env.SERVER_HOST }}
         username: ${{ env.USER_NAME }}
         password: ${{ env.SERVER_PASSWORD }} 
-        localDir: /dist/${{ env.PROJECT_NAME }}.zip
+        localDir: dist/${{ env.PROJECT_NAME }}.zip
         remoteDir: /w5/w5-server/core/web
         forceUpload: true
         dryRun: false
