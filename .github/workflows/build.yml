@@ -54,7 +54,7 @@ jobs:
         host: ${{ env.SERVER_HOST }}
         username: ${{ env.USER_NAME }}
         password: ${{ env.SERVER_PASSWORD }} 
-        localDir: ${{ env.PROJECT_NAME }}.zip
+        localDir: /dist/${{ env.PROJECT_NAME }}.zip
         remoteDir: /w5/w5-server/core/web
         forceUpload: true
         dryRun: false
