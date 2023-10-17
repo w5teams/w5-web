@@ -200,9 +200,9 @@
     tslib "^2.0.3"
 
 "@antv/x6@^1.32.3":
-  version "1.32.3"
-  resolved "https://registry.yarnpkg.com/@antv/x6/-/x6-1.32.3.tgz#47400cdb4eaa97004795a2ba1c2dd21f3cf09b68"
-  integrity sha512-RSjqC4FGcPHSbAfwy2xeqopelboVrHoubx+HF50EGFvQoRdKSGgbue+4McNtM1RAUGKe9Pca+ZJQepWYeKJyvw==
+  version "1.34.11"
+  resolved "https://registry.npmjs.org/@antv/x6/-/x6-1.34.11.tgz"
+  integrity sha512-i8dTrafCDwSc2WsyXJNtA/E8IcBXkv1dneO9YnASOwRqFl+9MYEVWwkiU9TqEDjyi59MgLQqvG8yFjGGV+e7mw==
   dependencies:
     csstype "^3.0.3"
     jquery "^3.5.1"
@@ -1589,7 +1589,7 @@ bytes@3.1.0:
   resolved "https://registry.npm.taobao.org/bytes/download/bytes-3.1.0.tgz"
   integrity sha1-9s95M6Ng4FiPqf3oVlHNx/gF0fY=
 
-cacache@^10.0.4:
+cacache@^10.0.1, cacache@^10.0.4:
   version "10.0.4"
   resolved "https://registry.npm.taobao.org/cacache/download/cacache-10.0.4.tgz?cache=0&sync_timestamp=1594428108619&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcacache%2Fdownload%2Fcacache-10.0.4.tgz"
   integrity sha1-ZFI2eZnv+dQYiu/ZoU6dfGomNGA=
@@ -2065,6 +2065,17 @@ compressible@~2.0.16:
   integrity sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==
   dependencies:
     mime-db ">= 1.43.0 < 2"
+
+compression-webpack-plugin@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.npmjs.org/compression-webpack-plugin/-/compression-webpack-plugin-1.1.12.tgz"
+  integrity sha512-UpBXSHbrCSdSZieAffqXlAQpLO2fikVVRYibrWlbHYzKpOw1Y4jwkVZ/+S91GzWuJvXSbc8SBy/e8fQJh8uEMQ==
+  dependencies:
+    cacache "^10.0.1"
+    find-cache-dir "^1.0.0"
+    neo-async "^2.5.0"
+    serialize-javascript "^1.4.0"
+    webpack-sources "^1.0.1"
 
 compression@^1.7.3:
   version "1.7.4"
@@ -7572,7 +7583,12 @@ tslib@^1.10.0, tslib@^1.13.0:
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.14.1.tgz?cache=0&sync_timestamp=1602286717635&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftslib%2Fdownload%2Ftslib-1.14.1.tgz"
   integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=
 
-tslib@^2.0.0, tslib@^2.0.3, tslib@^2.3.1:
+tslib@^2.0.0:
+  version "2.0.3"
+  resolved "https://registry.npm.taobao.org/tslib/download/tslib-2.0.3.tgz?cache=0&sync_timestamp=1602286717635&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftslib%2Fdownload%2Ftslib-2.0.3.tgz"
+  integrity sha1-jgdBrEX8DCJuWKF7/D5kubxsphw=
+
+tslib@^2.0.3, tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
